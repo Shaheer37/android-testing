@@ -25,7 +25,6 @@ class TasksViewModelTest{
 
     @Test
     fun addNewTask_setsNewTaskEvent(){
-        val tasksViewModel = TasksViewModel(ApplicationProvider.getApplicationContext() as TodoApplication)
         tasksViewModel.addNewTask()
         val value = tasksViewModel.newTaskEvent.getOrAwaitValue()
         assertThat(value.getContentIfNotHandled(), (not(nullValue())))
@@ -33,14 +32,8 @@ class TasksViewModelTest{
 
     @Test
     fun setFilterAllTasks_tasksAddViewVisible() {
-
-        // Given a fresh ViewModel
-
-
         // When the filter type is ALL_TASKS
         tasksViewModel.setFiltering(TasksFilterType.ALL_TASKS)
-
-
         // Then the "Add task" action is visible
         val value = tasksViewModel.tasksAddViewVisible.getOrAwaitValue()
         assertThat(value, (`is`(true)))
